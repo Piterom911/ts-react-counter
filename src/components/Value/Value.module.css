@@ -1,0 +1,16 @@
+.wrapper {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid white;
+    font-size: 80px;
+    font-weight: 700;
+    border-radius: 10px;
+    color: white;
+}
+
+.max {
+    color: lightcoral;
+    font-size: 100px;
+}

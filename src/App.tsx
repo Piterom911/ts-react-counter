@@ -1,24 +1,59 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import {CounterSettings} from "./components/CounterSettings/CounterSettings";
+import {CounterMain} from "./components/CounterMain/CounterMain";
 
 function App() {
+    const [inputError, setInputError] = useState<string>('')
+    const [maxValue, setMaxValue] = useState<string>('0')
+    const [minValue, setMinValue] = useState<string>('0')
+    const [settings, setSettings] = useState<boolean>(false)
+    const [value, setValue] = useState<number>(0)
+
+    useEffect( () => {
+        if (Number(maxValue) <= Number(minValue) && !inputError) {
+            setInputError('Max Value should be greater than Min Value')
+        }
+        if (Number(maxValue) <= Number(minValue) || inputError) {
+            setSettings(false)
+        }
+    }, [maxValue, minValue])
+
+    useEffect( () => {
+        const min = localStorage.getItem("minValue")
+        const max = localStorage.getItem("maxValue")
+        if (min) setMinValue(min)
+        if (max) setMaxValue(max)
+        setInputError('')
+        setValue(Number(min))
+    }, [])
+
+    const onsetMaxValue = (value: string) => {
+        setSettings(true)
+        setMaxValue(value)
+    }
+
+    const onsetMinValue = (value: string) => {
+        setSettings(true)
+        setMinValue(value)
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <CounterSettings maxValue={maxValue}
+                         minValue={minValue}
+                         isSettings={settings}
+                         setCurrentValue={setValue}
+                         setMaxValue={onsetMaxValue}
+                         setMinValue={onsetMinValue}
+                         setSettings={setSettings}
+                         setInputError={setInputError} />
+        <CounterMain isSettings={settings}
+                     currentValue={value}
+                     maxValue={Number(maxValue)}
+                     minValue={Number(minValue)}
+                     setCurrentValue={setValue}
+                     inputError={inputError} />
     </div>
   );
 }

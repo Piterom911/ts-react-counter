@@ -1,0 +1,21 @@
+.errorMessage,
+.notMessage {
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    line-height: 2em;
+    border: 3px solid white;
+    flex-grow: 1;
+    border-radius: 10px;
+}
+
+.notMessage {
+    color: lightblue;
+}
+
+.errorMessage {
+    color: lightcoral;
+}
