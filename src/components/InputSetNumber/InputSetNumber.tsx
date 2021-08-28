@@ -17,10 +17,8 @@ export function InputSetNumber(props: InputSetNumberPropsType) {
     const onNumberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         if (Number(event.currentTarget.value) < 0) {
             setError(true)
-            props.setInputError('The value must be greater than zero')
         } else {
             setError(false)
-            props.setInputError('')
         }
         props.setValue(event.currentTarget.value)
     }

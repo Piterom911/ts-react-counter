@@ -38,7 +38,7 @@ export function CounterMain(props: CounterMainPropsType) {
 
             <div className={'buttonWrapper'}>
                 <Button isDisabled={incDisabled} onClickHandler={increaseValue}>Inc</Button>
-                <Button isDisabled={props.currentValue === props.minValue || props.isSettings} onClickHandler={resetValue}>Reset</Button>
+                <Button isDisabled={!!props.inputError || props.currentValue === props.minValue || props.isSettings} onClickHandler={resetValue}>Reset</Button>
             </div>
         </div>
     )
