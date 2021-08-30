@@ -1,8 +1,8 @@
 
 const initialState = {
     inputError: '',
-    maxValue: '0',
-    minValue: '0',
+    maxValue: 0,
+    minValue: 0,
     settings: false,
     value: 0,
 }
@@ -35,10 +35,10 @@ type RootActionType = ReturnType<typeof setInputErrorAC>
 export const setInputErrorAC = (error: string) => {
     return { type: 'SET-INPUT-ERROR', error} as const
 }
-export const setMaxValueAC = (maxValue: string) => {
+export const setMaxValueAC = (maxValue: number) => {
     return { type: 'SET-MAX-VALUE', maxValue} as const
 }
-export const setMinValueAC = (minValue: string) => {
+export const setMinValueAC = (minValue: number) => {
     return { type: 'SET-MIN-VALUE', minValue} as const
 }
 export const setSettingsAC = (settings: boolean) => {

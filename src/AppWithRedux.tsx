@@ -35,18 +35,18 @@ function AppWithRedux() {
         }
     }, [maxValue, minValue])
     useEffect( () => {
-        const min = localStorage.getItem("minValue")
-        const max = localStorage.getItem("maxValue")
+        const min = Number(localStorage.getItem("minValue"))
+        const max = Number(localStorage.getItem("maxValue"))
         if (min) dispatch(setMinValueAC(min))
         if (max) dispatch(setMaxValueAC(max))
         dispatch(setInputErrorAC(''))
         dispatch(setCounterValueAC(Number(min)))
     }, [])
-    const onsetMaxValue = (value: string) => {
+    const onsetMaxValue = (value: number) => {
         dispatch(setSettingsAC(true))
         dispatch(setMaxValueAC(value))
     }
-    const onsetMinValue = (value: string) => {
+    const onsetMinValue = (value: number) => {
         dispatch(setSettingsAC(true))
         dispatch(setMinValueAC(value))
     }
@@ -69,7 +69,7 @@ function AppWithRedux() {
                          setMaxValue={onsetMaxValue}
                          setMinValue={onsetMinValue}
                          setSettings={setSettings}
-                         setInputError={setInputError} />
+                         inputError={inputError} />
         <CounterMain isSettings={settings}
                      currentValue={value}
                      maxValue={Number(maxValue)}

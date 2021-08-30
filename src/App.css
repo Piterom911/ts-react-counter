@@ -44,3 +44,20 @@ body {
     padding: 15px 10px;
     flex-grow: 1;
 }
+
+.navLinkAsButton {
+    background-color: #67885a;
+    font-size: 30px;
+    padding: 15px;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    text-align: center;
+}
+
+.navLinkAsButton:hover {
+    background-color: #8ccb75;
+}

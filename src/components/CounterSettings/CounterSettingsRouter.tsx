@@ -2,6 +2,7 @@ import React from "react";
 import s from './CounterSettings.module.css'
 import {InputSetNumber} from "../InputSetNumber/InputSetNumber";
 import {Button} from "../Button/Button";
+import { NavLink } from "react-router-dom";
 
 type CounterSettingsPropsType = {
     maxValue: number
@@ -14,12 +15,12 @@ type CounterSettingsPropsType = {
     inputError: string
 }
 
-export function CounterSettings(props: CounterSettingsPropsType) {
+export function CounterSettingsRouter(props: CounterSettingsPropsType) {
     const onClickSetHandler = () => {
         props.setSettings(false)
-        props.setCurrentValue(Number(props.minValue))
-        localStorage.setItem("maxValue", JSON.stringify(localStorage.getItem("minValue")))
-        localStorage.setItem("minValue", JSON.stringify(localStorage.getItem("maxValue")))
+        props.setCurrentValue(props.minValue)
+        localStorage.setItem("maxValue", JSON.stringify(props.maxValue))
+        localStorage.setItem("minValue", JSON.stringify(props.minValue))
     }
     return (
         <div className="wrapper">
@@ -38,6 +39,7 @@ export function CounterSettings(props: CounterSettingsPropsType) {
             <div className={`buttonWrapper ${s.setButton}`}>
                 <Button isDisabled={!props.isSettings}
                         onClickHandler={onClickSetHandler} >Set</Button>
+                <NavLink to={'/'} className={`navLinkAsButton ${s.navLink}`}>Counter</NavLink>
             </div>
         </div>
     )
