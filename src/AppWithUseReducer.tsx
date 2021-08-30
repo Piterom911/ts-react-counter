@@ -1,15 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
 import {CounterSettings} from "./components/CounterSettings/CounterSettings";
 import {CounterMain} from "./components/CounterMain/CounterMain";
+import {
+    counterReducer,
+    setCounterValueAC,
+    setInputErrorAC,
+    setMaxValueAC,
+    setMinValueAC,
+    setSettingsAC
+} from "./state/counterReducer";
 
-function App() {
+function AppWithUseReducer() {
 
-    const [inputError, setInputError] = useState<string>('')
-    const [maxValue, setMaxValue] = useState<string>('0')
-    const [minValue, setMinValue] = useState<string>('0')
-    const [settings, setSettings] = useState<boolean>(false)
-    const [value, setValue] = useState<number>(0)
+    const [{inputError, maxValue, minValue, settings, value}, dispatch] = useReducer(counterReducer, {
+        inputError: '',
+        maxValue: '0',
+        minValue: '0',
+        settings: false,
+        value: 0,
+    })
 
     useEffect( () => {
         if (Number(maxValue) <= Number(minValue)) {
@@ -25,18 +35,27 @@ function App() {
     useEffect( () => {
         const min = localStorage.getItem("minValue")
         const max = localStorage.getItem("maxValue")
-        if (min) setMinValue(min)
-        if (max) setMaxValue(max)
+        if (min) dispatch(setMinValueAC(min))
+        if (max) dispatch(setMaxValueAC(max))
         setInputError('')
         setValue(Number(min))
     }, [])
     const onsetMaxValue = (value: string) => {
-        setSettings(true)
-        setMaxValue(value)
+        dispatch(setSettingsAC(true))
+        dispatch(setMaxValueAC(value))
     }
     const onsetMinValue = (value: string) => {
-        setSettings(true)
-        setMinValue(value)
+        dispatch(setSettingsAC(true))
+        dispatch(setMinValueAC(value))
+    }
+    const setValue = (value: number) => {
+        dispatch(setCounterValueAC(value))
+    }
+    const setSettings = (set: boolean) => {
+        dispatch(setSettingsAC(set))
+    }
+    const setInputError = (error: string) => {
+        dispatch(setInputErrorAC(error))
     }
 
   return (
@@ -59,4 +78,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppWithUseReducer;

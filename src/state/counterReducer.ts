@@ -9,7 +9,7 @@ const initialState = {
 
 type reducerState = typeof initialState
 
-export const counterReducer = (state: reducerState, action: RootActionType) => {
+export const counterReducer = (state: reducerState, action: RootActionType): reducerState => {
     switch (action.type) {
         case 'SET-INPUT-ERROR':
             return {...state, inputError: action.error}
@@ -41,7 +41,7 @@ export const setMaxValueAC = (maxValue: string) => {
 export const setMinValueAC = (minValue: string) => {
     return { type: 'SET-MIN-VALUE', minValue} as const
 }
-export const setSettingsAC = (settings: string) => {
+export const setSettingsAC = (settings: boolean) => {
     return { type: 'SET-SETTINGS', settings} as const
 }
 export const setCounterValueAC = (value: number) => {

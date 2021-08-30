@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import AppWithUseReducer from './AppWithUseReducer';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppWithUseReducer />
   </React.StrictMode>,
   document.getElementById('root')
 );
