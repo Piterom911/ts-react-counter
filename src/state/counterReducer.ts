@@ -1,15 +1,15 @@
 
 const initialState = {
     inputError: '',
-    maxValue: '',
-    minValue: '',
+    maxValue: '0',
+    minValue: '0',
     settings: false,
     value: 0,
 }
 
-type reducerState = typeof initialState
+export type CounterReducerState = typeof initialState
 
-export const counterReducer = (state: reducerState, action: RootActionType): reducerState => {
+export const counterReducer = (state: CounterReducerState = initialState, action: RootActionType): CounterReducerState => {
     switch (action.type) {
         case 'SET-INPUT-ERROR':
             return {...state, inputError: action.error}

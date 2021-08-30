@@ -3,23 +3,25 @@ import './App.css';
 import {CounterSettings} from "./components/CounterSettings/CounterSettings";
 import {CounterMain} from "./components/CounterMain/CounterMain";
 import {
-    counterReducer,
+    counterReducer, CounterReducerState,
     setCounterValueAC,
     setInputErrorAC,
     setMaxValueAC,
     setMinValueAC,
     setSettingsAC
 } from "./state/counterReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateTypes} from "./state/store";
 
-function AppWithUseReducer() {
+function AppWithRedux() {
 
-    const [{inputError, maxValue, minValue, settings, value}, dispatch] = useReducer(counterReducer, {
-        inputError: '',
-        maxValue: '0',
-        minValue: '0',
-        settings: false,
-        value: 0,
-    })
+    const {inputError,
+        maxValue,
+        minValue,
+        settings,
+        value} = useSelector<AppRootStateTypes, CounterReducerState>(state => state.counterState)
+
+    const dispatch = useDispatch()
 
     useEffect( () => {
         if (Number(maxValue) <= Number(minValue)) {
@@ -78,4 +80,4 @@ function AppWithUseReducer() {
   );
 }
 
-export default AppWithUseReducer;
+export default AppWithRedux;
