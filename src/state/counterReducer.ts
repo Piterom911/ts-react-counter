@@ -1,4 +1,3 @@
-
 const initialState = {
     inputError: '',
     maxValue: 0,

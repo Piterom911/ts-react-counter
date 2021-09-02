@@ -24,7 +24,7 @@ export function InputSetNumber(props: InputSetNumberPropsType) {
     let finalInputClass = `${s.input} ${props.styleClass} ${error && s.error}`
 
     const onNumberChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        if (Number(event.currentTarget.value) < 0 || maxValue <= minValue) {
+        if (Number(event.currentTarget.value) < 0) {
             setError(true)
         } else {
             setError(false)

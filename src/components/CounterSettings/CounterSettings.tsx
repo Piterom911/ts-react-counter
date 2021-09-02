@@ -18,8 +18,6 @@ export function CounterSettings(props: CounterSettingsPropsType) {
     const onClickSetHandler = () => {
         props.setSettings(false)
         props.setCurrentValue(Number(props.minValue))
-        localStorage.setItem("maxValue", JSON.stringify(localStorage.getItem("minValue")))
-        localStorage.setItem("minValue", JSON.stringify(localStorage.getItem("maxValue")))
     }
     return (
         <div className="wrapper">
